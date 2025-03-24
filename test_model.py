@@ -17,7 +17,7 @@ def predict_image(image_path):
     img_normalized = img_resized / 255.0
     img_batch = np.expand_dims(img_normalized, axis=0)
     prediction = model.predict(img_batch)[0][0]
-    label = "Biển 40km/h" if prediction > 0.5 else "Không phải biển 40km/h"
+    label = "Biển 40km/h" if prediction < 0.5 else "Không phải biển 40km/h"
     confidence = prediction if prediction > 0.5 else 1 - prediction
     return img, label, confidence
 
